@@ -94,3 +94,169 @@ This section outlines the chosen frameworks and tools for each repository in the
 | **fx-risk-ai-platform**          | Markdown + Diagrams + Docs | Meta-repo for linking components, managing strategy artifacts, BDAT/Zachman diagrams, and system-wide documentation. |
 
 
+## Strategic Prioritization for CIO, CTO, and Chief Architect
+
+The Fx-Risk-AI platform is not just a technical implementation — it's an enterprise transformation accelerator for FX desk operations. The following prioritization matrix offers a role-specific lens on what to drive first, why, and how it adds value.
+
+---
+
+### Chief Architect Priorities
+
+| Focus Area | Why It Matters | What to Drive First |
+|------------|----------------|----------------------|
+| **Domain-Driven Architecture** | Align tech boundaries with FX ops domains (exceptions, audit, routing, forecasting) | Set up modular repos, APIs, and shared libraries |
+| **Composable AI Services** | Isolate prompt-based logic and ML inference from orchestration | Bedrock/SageMaker service scaffolding in `fx-risk-ai-insights-engine` |
+| **Prompt Engineering & Reuse** | Maintain consistency across summarizers, classifiers, responders | Design prompt templates in `fx-risk-ai-shared-libs` |
+| **Validation First** | Ensure every AI output is testable and traceable | Build eval harness in `fx-risk-ai-validation-suite` |
+| **Infra-Driven Thinking** | Code is deployed, not just developed | Start with `fx-risk-ai-infra` and IaC pipelines |
+
+---
+
+### CIO Priorities
+
+| Focus Area | Why It Matters | What to Drive First |
+|------------|----------------|----------------------|
+| **Business-Value Mapping** | All AI must tie to operational ROI | Establish metrics: SLA adherence, break resolution time, handoff quality |
+| **Scalable Forecasting** | Volume spikes = resourcing gaps | Launch `fx-risk-ai-forecasting-pipeline` with QuickSight visibility |
+| **Ops Enablement (Not Just Automation)** | Empower analysts, don't replace them | Deploy exception categorizer + chat summarizer early |
+| **Governance & Auditability** | AI output must meet regulatory standards | Build audit and rule-based alert system in `fx-risk-ai-orchestration-api` |
+| **Cross-Function Alignment** | Treasury, Legal, Ops all benefit — unify flows | Ensure orchestration logic supports multi-team routing and escalation flows |
+
+---
+
+### CTO Priorities
+
+| Focus Area | Why It Matters | What to Drive First |
+|------------|----------------|----------------------|
+| **Cloud-Native by Default** | Avoid lock-in, maximize managed services | Bedrock, SageMaker, Glue, and CDK-first infra rollout |
+| **Secure & Compliant Design** | Protect data across regions and desks | IAM, encryption, role boundaries via `fx-risk-ai-infra` |
+| **DevOps + Observability** | Deployment confidence + issue traceability | GitHub Actions + CloudWatch + OpenSearch integration |
+| **CI/CD & Multi-Env Workflows** | Dev/Staging/Prod parity needed for AI testing | Pipelines for each repo with environment context |
+| **Cost Visibility** | LLMs and compute need ROI tracking | Track Bedrock/SageMaker invocation volume per use case |
+
+---
+
+Each role contributes a layer of decision-making:  
+- **Chief Architect** ensures systems are well-shaped  
+- **CTO** ensures they run reliably and securely  
+- **CIO** ensures they drive business transformation
+
+Use this lens to phase implementation in a way that maximizes impact early and scales responsibly.
+
+---
+
+## CIO vs. Chief Architect — Roles in Fx-Risk-AI Platform
+
+### Role Comparison Table
+
+| Theme / Area              | CIO Role                                                                 | Chief Architect Role                                                            | Overlap? |
+|---------------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------------------|----------|
+| Vision & Strategy         | Define enterprise-wide goals: faster FX operations, audit alignment, LLM-assisted productivity | Translate strategy into BDAT-aligned design, modular repos, and AWS service orchestration | Yes      |
+| Use Case Prioritization   | Focus on value streams: SLA risk reduction, faster dispute resolution, fewer escalations | Focus on AI and workflow fit: what's feasible now vs. later, reusability         | Yes      |
+| Architecture Governance   | Demand adherence to security, compliance, and cost transparency          | Ensure implementation conforms to standards, boundaries, and documentation       | Yes      |
+| Technology Selection      | Approve or oversee cloud strategy and enterprise architecture alignment  | Choose appropriate AWS services, AI tools, and frameworks per domain             | Yes      |
+| Forecasting and Analytics | Want visibility into desk-level volumes and planning signals             | Design data pipelines and QuickSight dashboards to deliver them                  | Yes      |
+| Audit and Compliance      | Ensure AI actions are explainable, auditable, and regulator-friendly     | Build traceable LLM and rule hybrids, and log every action path                  | Yes      |
+| Delivery Cadence / MVP Focus | Drive toward operational PoC: “What will reduce pain in 60–90 days?” | Architect for MVP while preserving modularity for scale                          | Yes      |
+| AI Risk Management        | Watch LLM bias, hallucinations, data leaks at the org level              | Build evaluation frameworks and policy-enforcing interfaces                      | Yes      |
+| Team Enablement           | Coordinate Legal, Ops, and Treasury teams using the system               | Build multi-tenant APIs, desk-specific routes, and permissions                   | Yes      |
+
+### Summary: How They Differ and Align
+
+| CIO Leads                          | Chief Architect Enables                            |
+|-----------------------------------|----------------------------------------------------|
+| Value justification               | Technical realization                              |
+| Executive stakeholder alignment   | Developer and team alignment                       |
+| Transformation outcomes           | Architecture traceability                          |
+| Cross-functional program sponsorship | End-to-end service ownership                    |
+| Compliance and governance policy  | Security and data controls implementation          |
+| Business KPIs                     | Metrics instrumentation and observability          |
+| Delivery accountability           | Architectural feasibility and scaling              |
+
+### Where They Work Best Together in Fx-Risk-AI
+
+| Joint Priority            | Why It Is Critical in Fx-Risk-AI                         |
+|---------------------------|-----------------------------------------------------------|
+| Exception Resolution AI   | Both care about operational lift and explainability       |
+| Forecasting Dashboards    | CIO wants desk planning; Architect ensures clean ETL      |
+| Routing and Orchestration | CIO demands reuse across teams; Architect builds it       |
+| Prompt Consistency        | CIO wants message clarity; Architect wants reusable templates |
+| Governance Traceability   | CIO owns audit needs; Architect ensures it's built in (logs, IAM, lineage) |
+
+
+## CTO vs. Chief Architect — Roles in Fx-Risk-AI Platform
+
+### Role Comparison Table
+
+| Theme / Area              | CTO Role                                                               | Chief Architect Role                                                    | Overlap? |
+|---------------------------|------------------------------------------------------------------------|--------------------------------------------------------------------------|----------|
+| Technology Strategy       | Drive tech stack decisions, delivery methodology, and platform operations | Ensure alignment of architecture to strategic goals and future needs     | Yes      |
+| System Scalability        | Ensure systems are production-ready, cost-effective, and auto-scalable | Design modular, decoupled systems that scale with domain-specific growth | Yes      |
+| Tooling and Frameworks    | Select and enforce tooling standards (e.g., CDK, CI/CD, logging)        | Apply those tools in domain-aligned service implementations              | Yes      |
+| Cloud and Infrastructure  | Own AWS usage, network policies, resource quotas, and cost control      | Model and provision resources using IaC with a focus on maintainability  | Yes      |
+| Delivery Ownership        | Ensure features are shipped reliably, securely, and on time             | Ensure architecture supports delivery velocity and avoids design debt    | Yes      |
+| Observability and DevOps  | Set up monitoring, alerts, rollback, and staging practices              | Ensure observability is embedded in the design and services emit useful signals | Yes |
+| Security and Access       | Apply IAM policies, encryption standards, and API protection            | Architect roles, scopes, and audit layers for least privilege            | Yes      |
+| Data Privacy and Residency| Enforce PII compliance, data boundaries, and encryption                 | Architect systems for data zone separation and compliant logging         | Yes      |
+| Cost Optimization         | Track cloud spend, model cost efficiency, storage impact                | Design systems with budget constraints in mind, e.g., prompt minimization, model sizing | Yes |
+| Incident Response         | Owns system uptime, incident processes, on-call rotations               | Designs for graceful degradation, fallback flows, circuit breakers       | Yes      |
+
+### Summary: How They Differ and Align
+
+| CTO Leads                           | Chief Architect Enables                            |
+|------------------------------------|----------------------------------------------------|
+| Operational execution and delivery | Architectural stability and evolution              |
+| DevOps and cloud environment       | Infrastructure design and IaC modeling             |
+| Performance and reliability metrics| Technical patterns and reuse across teams          |
+| CI/CD, rollback, monitoring setup  | Design for testability, observability, and logging |
+| Enforcement of tooling standards   | Correct usage of tools inside services and modules |
+| Uptime and latency accountability  | Service decomposition and fault containment        |
+
+### Where They Work Best Together in Fx-Risk-AI
+
+| Joint Priority              | Why It Is Critical in Fx-Risk-AI                          |
+|----------------------------|------------------------------------------------------------|
+| Modular Infra-as-Code      | CTO manages environments; Architect designs reusable infra modules |
+| Observability and Logging  | CTO defines standards; Architect wires them into service logic |
+| CI/CD Workflow Design      | CTO enables pipelines; Architect ensures deployment boundaries align with architecture |
+| Security and Access Control| CTO owns IAM governance; Architect embeds it in routing and service layering |
+| Resilient Architecture     | CTO enforces uptime SLAs; Architect designs for graceful failure and separation of concerns |
+
+## CIO vs. CTO — Roles in Fx-Risk-AI Platform
+
+### Role Comparison Table
+
+| Theme / Area              | CIO Role                                                                 | CTO Role                                                                | Overlap? |
+|---------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------------|----------|
+| Business Transformation   | Define FX operational goals: automation, audit improvement, AI enablement | Translate business goals into technology delivery pipelines and services | Yes      |
+| Platform Sponsorship      | Secure budget, cross-functional support, and outcome visibility          | Lead implementation across teams with engineering best practices         | Yes      |
+| Value Realization         | Focus on SLA reduction, ops productivity, and audit wins                 | Focus on throughput, latency, and AI integration quality                 | Yes      |
+| Compliance and Risk       | Own risk posture, data privacy, regulator alignment                      | Implement security protocols, IAM, encryption, and auditing              | Yes      |
+| Program Direction         | Prioritize use cases by business value                                   | Sequence delivery for feasibility, resourcing, and infra maturity        | Yes      |
+| Cloud Strategy            | Approve enterprise-wide cloud direction (e.g., AWS-first)                | Execute deployment, scaling, networking, and infra configuration         | Yes      |
+| Ops Enablement            | Ensure Ops, Legal, and Treasury can use the system effectively            | Ensure uptime, monitoring, and fast incident resolution                  | Yes      |
+| Cross-Team Collaboration  | Coordinate business stakeholders                                         | Coordinate platform and delivery teams                                  | Yes      |
+| KPI Ownership             | SLA, NOP forecast accuracy, escalation rate                              | System uptime, cloud cost, deployment frequency, latency                 | Partial  |
+| Focus on Engineering Stack| Less concerned with tech stack specifics                                 | Decides frameworks, CI/CD, IaC tools, observability stack                | No       |
+
+### Summary: How They Differ and Align
+
+| CIO Leads                           | CTO Enables                                 |
+|------------------------------------|---------------------------------------------|
+| Value justification and funding    | Technical execution and optimization        |
+| Compliance accountability          | Implementation of security controls         |
+| Business stakeholder alignment     | Engineering team management and delivery    |
+| Cross-functional roadmap           | End-to-end delivery planning                |
+| Platform outcomes and perception   | Platform operability and resilience         |
+
+### Where They Work Best Together in Fx-Risk-AI
+
+| Joint Priority              | Why It Is Critical in Fx-Risk-AI                          |
+|----------------------------|------------------------------------------------------------|
+| Use Case Feasibility       | CIO drives value; CTO ensures it is realistically deliverable |
+| Cloud Cost and ROI         | CIO sponsors investment; CTO optimizes spend through design |
+| SLA and Forecasting        | CIO drives goals; CTO builds monitoring and prediction pipelines |
+| Compliance and Auditability| CIO owns the risk; CTO enforces encryption and logs across systems |
+| Team Readiness             | CIO ensures Ops/Legal/Treasury adoption; CTO ensures reliable access and training support |
+
+
