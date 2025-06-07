@@ -100,6 +100,12 @@ The Fx-Risk-AI platform is not just a technical implementation — it's an enter
 
 ---
 
+### CIO, CTO, and Chief Architect Role Alignment
+
+![CIO, CTO, and Chief Architect Comparison](./assets/cio-cto-chief-architect-comparison.png)
+
+---
+
 ### Chief Architect Priorities
 
 | Focus Area | Why It Matters | What to Drive First |
