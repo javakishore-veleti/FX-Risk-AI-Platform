@@ -420,3 +420,24 @@ The platform scales to additional desks, geographies, and domains.
 
 ---
 
+## Business Capability Heat Map — Fx-Risk-AI Platform
+
+This table provides a readiness assessment for core FX Ops capabilities. Use it to drive prioritization in Phase 1 and Phase 2 of the roadmap.
+
+| Business Capability                  | Domain Owner       | Process Maturity | Data Quality | Automation Potential | AI Suitability | Comments / Risks                                |
+|-------------------------------------|--------------------|------------------|--------------|----------------------|----------------|-------------------------------------------------|
+| Exception Categorization            | FX Operations      | High             | Medium       | High                 | High           | Ideal for prompt-based classification (Bedrock) |
+| Trade Confirmation Routing          | Desk Leads         | Medium           | Medium       | Medium               | Medium         | Needs rules + ML hybrid                         |
+| NOP Volume Forecasting              | Treasury           | High             | High         | High                 | High           | Strong candidate for SageMaker/Forecast         |
+| Chat Summarization (Ops Handoffs)   | Legal / Ops        | Medium           | Low          | Medium               | High           | Data fragmentation and sensitive content risks  |
+| Margin Call Workflow Classification | Margin Desk        | Low              | Medium       | Low                  | Medium         | Requires more upstream integration clarity      |
+| Dispute Escalation Tracking         | Risk & Compliance  | Medium           | Low          | Medium               | Medium         | Lack of centralized history or version tracking |
+| Trade Amendment Audit Logging       | Audit              | High             | High         | High                 | Medium         | High traceability need; moderate AI usefulness  |
+| SLA Breach Detection                | Service Mgmt / Ops | High             | High         | High                 | Low            | Better handled by rules and alerting logic      |
+
+**Legend**  
+- Process Maturity: Low / Medium / High — how well-defined and standardized is the process  
+- Data Quality: Low / Medium / High — completeness, cleanliness, reliability  
+- Automation Potential: feasibility of replacing or augmenting manual steps  
+- AI Suitability: strength of fit for LLMs or ML models
+
