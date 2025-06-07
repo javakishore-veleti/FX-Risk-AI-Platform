@@ -265,4 +265,179 @@ Use this lens to phase implementation in a way that maximizes impact early and s
 | Compliance and Auditability| CIO owns the risk; CTO enforces encryption and logs across systems |
 | Team Readiness             | CIO ensures Ops/Legal/Treasury adoption; CTO ensures reliable access and training support |
 
+## Fx-Risk-AI Platform — Leadership-Aligned Implementation Roadmap
+
+This roadmap guides the platform journey from business alignment through modular AI service rollout and enterprise scaling. Each phase aligns with the responsibilities of the CIO, CTO, and Chief Architect, ensuring measurable business value, system reliability, and architectural clarity.
+
+---
+
+### Phase 1: Business Architecture and Strategic Alignment (TOGAF ADM Phase A/B)
+
+This foundational phase focuses on understanding current FX business services, mapping capabilities, evaluating domain readiness, and establishing transformation KPIs.
+
+**CIO Focus**
+- Define FX desk transformation goals (exception reduction, SLA compliance, audit traceability)
+- Sponsor business capability mapping and service inventory across Ops, Legal, Treasury, Risk
+- Define target outcomes and transformation success metrics (e.g., SLA reduction %, escalation trendlines)
+
+**CTO Focus**
+- Assess current applications, workflows, and tooling across regions and desks
+- Identify technical bottlenecks, legacy constraints, and cloud readiness
+- Score domain maturity for automation and API enablement
+
+**Chief Architect Focus**
+- Model Business Architecture Layer (Capabilities → Domains → Services → Systems)
+- Construct a Business Capability Heat Map: maturity, data quality, AI suitability
+- Align early Zachman columns (What, Who, How, Where) with current-state reality
+- Produce target business architecture artifacts (TOGAF Phase B)
+
+**Outcome**
+- Defined business domains and services
+- Prioritized domains for AI enablement and orchestration
+- Capability-based phasing for the remainder of the roadmap
+
+---
+
+### Phase 2: AI Enablement and Capability Realization
+
+This phase introduces AI services where business processes are mature and measurable improvements can be realized.
+
+**CIO Focus**
+- Approve AI use cases that align to value streams (e.g., break classification, chat summarization)
+- Sponsor safe deployment of LLMs (zero-shot, explainable prompts)
+- Track transformation KPIs
+
+**CTO Focus**
+- Provision Bedrock, SageMaker, Forecast, Glue, Lambda as foundation
+- Establish usage controls, quotas, and logging
+- Secure AI endpoints with IAM and policy-based access
+
+**Chief Architect Focus**
+- Design modular AI services (summarizers, suggesters, classifiers)
+- Standardize prompts and outputs for testability and reuse
+- Build shared AI libraries for multi-repo integration
+
+**Outcome**
+- Bedrock and SageMaker-backed AI services deployed
+- Exception categorization and chat summarization services live
+- Foundation for scaling to other domains
+
+---
+
+### Phase 3: Forecasting and Operational Planning
+
+Predictive analytics are integrated to support intraday and multi-region decision-making.
+
+**CIO Focus**
+- Align forecasting to resourcing and coverage planning
+- Sponsor NOP volume forecasting for Ops, Treasury, and Risk
+
+**CTO Focus**
+- Deploy time series pipelines (Glue + Forecast or SageMaker)
+- Ensure data ingestion, retention, and metric visibility
+
+**Chief Architect Focus**
+- Connect forecasting to orchestration layer and UI
+- Define model explainability output for analyst consumption
+- Integrate QuickSight dashboards for margin planning
+
+**Outcome**
+- Automated NOP forecasting per desk
+- Forecasts integrated into desk dashboards
+- Basis for SLA breach prediction and resource shifts
+
+---
+
+### Phase 4: Workflow Orchestration and Routing Intelligence
+
+Orchestration layers enable smart routing, state transitions, and action suggestions.
+
+**CIO Focus**
+- Push for uniform exception handling across geographies and functions
+- Sponsor smart routing logic for Ops handoff, escalation, and confirmations
+
+**CTO Focus**
+- Build or scale orchestration APIs (Django/FastAPI)
+- Connect downstream systems for queue management
+
+**Chief Architect Focus**
+- Design routing engine with rule + AI hybrid logic
+- Implement audit trails, trace IDs, and action provenance
+- Unify classification, suggestion, and routing into a single orchestration layer
+
+**Outcome**
+- AI and business logic powered routing flows
+- Centralized orchestration layer with desk-specific behavior
+- Standardized routing APIs and audit logging
+
+---
+
+### Phase 5: Governance, Auditability, and Observability
+
+The platform is enhanced with oversight, logging, and security infrastructure to meet compliance needs.
+
+**CIO Focus**
+- Validate that AI recommendations and actions are auditable and regulator-ready
+- Sponsor governance reviews and observability for critical flows
+
+**CTO Focus**
+- Monitor all endpoints, usage, and forecast drift
+- Enforce encryption, logging, and data retention policies
+
+**Chief Architect Focus**
+- Design observability layers into each service (CloudWatch, OpenSearch, X-Ray)
+- Implement policy-aware service wrappers
+- Embed audit triggers in exception, amendment, and override flows
+
+**Outcome**
+- Central audit trail for AI decisions and data flows
+- Real-time observability across services
+- AI trust layer for compliance and regulatory reporting
+
+---
+
+### Phase 6: Platform Scaling and Multi-Domain Expansion
+
+The platform scales to additional desks, geographies, and domains.
+
+**CIO Focus**
+- Expand transformation to more business units (e.g., Asia FX, credit risk)
+- Measure ROI of LLM integrations across functions
+
+**CTO Focus**
+- Enable multi-region deployments via IaC
+- Harden CI/CD pipelines for team autonomy
+
+**Chief Architect Focus**
+- Scale shared service templates (AI, routing, API, infra)
+- Expand domain models and forecasts
+- Maintain architecture logs and TOGAF model traceability
+
+**Outcome**
+- Platform operational in multiple desks/regions
+- Shared libraries and services reused across teams
+- Architecture evolves with business needs
+
+---
+
+## Business Capability Heat Map — Fx-Risk-AI Platform
+
+This table provides a readiness assessment for core FX Ops capabilities. Use it to drive prioritization in Phase 1 and Phase 2 of the roadmap.
+
+| Business Capability                  | Domain Owner       | Process Maturity | Data Quality | Automation Potential | AI Suitability | Comments / Risks                                |
+|-------------------------------------|--------------------|------------------|--------------|----------------------|----------------|-------------------------------------------------|
+| Exception Categorization            | FX Operations      | High             | Medium       | High                 | High           | Ideal for prompt-based classification (Bedrock) |
+| Trade Confirmation Routing          | Desk Leads         | Medium           | Medium       | Medium               | Medium         | Needs rules + ML hybrid                         |
+| NOP Volume Forecasting              | Treasury           | High             | High         | High                 | High           | Strong candidate for SageMaker/Forecast         |
+| Chat Summarization (Ops Handoffs)   | Legal / Ops        | Medium           | Low          | Medium               | High           | Data fragmentation and sensitive content risks  |
+| Margin Call Workflow Classification | Margin Desk        | Low              | Medium       | Low                  | Medium         | Requires more upstream integration clarity      |
+| Dispute Escalation Tracking         | Risk & Compliance  | Medium           | Low          | Medium               | Medium         | Lack of centralized history or version tracking |
+| Trade Amendment Audit Logging       | Audit              | High             | High         | High                 | Medium         | High traceability need; moderate AI usefulness  |
+| SLA Breach Detection                | Service Mgmt / Ops | High             | High         | High                 | Low            | Better handled by rules and alerting logic      |
+
+**Legend**  
+- Process Maturity: Low / Medium / High — how well-defined and standardized is the process  
+- Data Quality: Low / Medium / High — completeness, cleanliness, reliability  
+- Automation Potential: feasibility of replacing or augmenting manual steps  
+- AI Suitability: strength of fit for LLMs or ML models
 
