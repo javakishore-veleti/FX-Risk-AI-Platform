@@ -30,7 +30,7 @@ The **Fx-Risk-AI-Platform** is an enterprise-grade, modular AI architecture desi
 
 - **Business-Driven Design:** Architecture must **map directly to business outcomes** — NOP forecasting, exception speed, desk-level clarity — not abstract tech outputs.
 - **"It Works" vs. "It Transforms":** Deliver **step-change operational value**, not just minimal integrations. Think in terms of FX desk enablement, not API coverage.
-- ☁**Cloud-Native First:** Default to **AWS-native primitives** (Bedrock, SageMaker, Glue, Lambda) to maximize scalability, observability, and integration velocity.
+- **Cloud-Native First:** Default to **AWS-native primitives** (Bedrock, SageMaker, Glue, Lambda) to maximize scalability, observability, and integration velocity.
 - **AI as a Co-Pilot, Not a Toy:** Integrate generative AI where it reduces ambiguity, resolves decisions, or eliminates queue fatigue — not just for demo appeal.
 - **Platform Thinking, Not Point Projects:** The platform is a **fabric of intelligent services**, not a set of siloed bots or dashboards.
 
